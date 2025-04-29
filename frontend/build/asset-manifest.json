@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/static/css/main.9f446187.css",
+    "main.js": "/static/js/main.5521c1e1.js",
+    "static/media/yaso.png": "/static/media/yaso.cacc1470d7d1665811e5.png",
+    "static/media/yaso_paneer.png": "/static/media/yaso_paneer.df5a1a51b3c9561cdd9f.png",
+    "static/media/yaso_cake.png": "/static/media/yaso_cake.881398ffa1ab7f3e2488.png",
+    "static/media/yaso_ghee.png": "/static/media/yaso_ghee.3e58b92b0ef56baa0ba1.png",
+    "static/media/yaso_butter.png": "/static/media/yaso_butter.447201e41da28297eaa9.png",
+    "static/media/yaso_logo.png": "/static/media/yaso_logo.167283c9aa3d58ce2a0d.png",
+    "index.html": "/index.html",
+    "main.9f446187.css.map": "/static/css/main.9f446187.css.map",
+    "main.5521c1e1.js.map": "/static/js/main.5521c1e1.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9f446187.css",
+    "static/js/main.5521c1e1.js"
+  ]
+}
