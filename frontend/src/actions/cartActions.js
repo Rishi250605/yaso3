@@ -4,8 +4,8 @@ import axios from 'axios';
 export const addCartItem = (id, quantity, size) => async (dispatch) => {
     try {
         dispatch(addCartItemRequest());
-
-        const { data } = await axios.get(`/api/v1/product/${id}`);
+        const baseURL =  'https://yaso-backend.onrender.com';
+        const { data } = await axios.get(`${baseURL}/api/v1/product/${id}`);
 
         console.log("API Response:", data.product);
         console.log("Sizes Data:", data.product.sizes);
