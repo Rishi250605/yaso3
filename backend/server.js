@@ -2,7 +2,12 @@ const app = require('./app');
 const path = require('path');
 const connectDatabase = require('./config/database');
 
+const cors = require('cors');
 
+app.use(cors({
+  origin: 'http://localhost:3000', // Allow access from localhost during development
+  credentials: true, // Allow cookies if needed
+}));
 connectDatabase();
 
 const server = app.listen(process.env.PORT,()=>{

@@ -5,6 +5,17 @@ const cookieParser = require('cookie-parser')
 const path = require('path')
 const dotenv = require('dotenv');
 dotenv.config({path:path.join(__dirname,"config/config.env")});
+const cors = require('cors');
+
+// Allow localhost in development and Render in production
+const allowedOrigins = process.env.NODE_ENV === 'production' 
+  ? ['https://yaso-frontend.onrender.com'] // Replace with your actual Render URL
+  : ['http://localhost:3000']; // Allow localhost during development
+
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true, // Allow cookies if needed
+}));
 
 
 app.use(express.json());
