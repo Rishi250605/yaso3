@@ -32,7 +32,9 @@ export const orderDetail = id => async(dispatch) => {
 export const adminOrders = async(dispatch) => {
     try {
        dispatch(adminOrdersRequest())
-       const {data} = await axios.get(`${baseURL}/api/v1/admin/orders`)
+       const { data } = await axios.get(`${baseURL}/api/v1/admin/orders`, {
+        withCredentials: true, // 👈 This is the key
+    });
        dispatch(adminOrdersSuccess(data))
     } catch (error) {
         dispatch(adminOrdersFail(error.response.data.message))
@@ -42,7 +44,9 @@ export const adminOrders = async(dispatch) => {
 export const deleteOrder = id => async(dispatch) => {
     try {
        dispatch(deleteOrderRequest())
-       await axios.delete(`${baseURL}/api/v1/admin/order/${id}`)
+       await axios.delete(`${baseURL}/api/v1/admin/order/${id}`, {
+        withCredentials: true, // 👈 This is the key
+    })
        dispatch(deleteOrderSuccess())
     } catch (error) {
        dispatch(deleteOrderFail(error.response.data.message))
@@ -52,7 +56,9 @@ export const deleteOrder = id => async(dispatch) => {
 export const updateOrder = (id, orderData)  => async(dispatch) => {
     try {
        dispatch(updateOrderRequest())
-       const { data} = await axios.put(`${baseURL}/api/v1/admin/order/${id}`, orderData)
+       const { data} = await axios.put(`${baseURL}/api/v1/admin/order/${id}`, orderData, {
+        withCredentials: true, // 👈 This is the key
+    })
        dispatch(updateOrderSuccess(data))
     } catch (error) {
        dispatch(updateOrderFail(error.response.data.message))

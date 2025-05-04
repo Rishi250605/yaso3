@@ -66,7 +66,9 @@ export const getAdminProducts  =  async (dispatch) => {
 
     try {  
         dispatch(adminProductsRequest()) 
-        const { data }  =  await axios.get(`${baseURL}/api/v1/admin/products`);
+        const { data }  =  await axios.get(`${baseURL}/api/v1/admin/products`, {
+            withCredentials: true, // 👈 This is the key
+        });
         dispatch(adminProductsSuccess(data))
     } catch (error) {
         //handle error
@@ -80,7 +82,9 @@ export const createNewProduct = (productData) => async (dispatch) => {
         dispatch(newProductRequest());
 
         console.log("Product Data Before API Call:", productData); // Debugging log
-        const { data } = await axios.post(`${baseURL}/api/v1/admin/product/new`, productData);
+        const { data } = await axios.post(`${baseURL}/api/v1/admin/product/new`, productData, {
+            withCredentials: true, // 👈 This is the key
+        });
 
         dispatch(newProductSuccess(data));
     } catch (error) {
@@ -94,7 +98,9 @@ export const deleteProduct  =  id => async (dispatch) => {
 
     try {  
         dispatch(deleteProductRequest()) 
-        await axios.delete(`${baseURL}/api/v1/admin/product/${id}`);
+        await axios.delete(`${baseURL}/api/v1/admin/product/${id}`, {
+            withCredentials: true, // 👈 This is the key
+        });
         dispatch(deleteProductSuccess())
     } catch (error) {
         //handle error
@@ -107,9 +113,16 @@ export const updateProduct = (id, formData) => async (dispatch) => {
     try {
         dispatch(updateProductRequest());
 
-        const { data } = await axios.put(`${baseURL}/api/v1/admin/product/${id}`, formData, {
-            headers: { "Content-Type": "multipart/form-data" },
-        });
+        const { data } = await axios.put(
+            `${baseURL}/api/v1/admin/product/${id}`,
+            formData,
+            {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+                withCredentials: true, // 👈 This sends the auth cookie
+            }
+        );
 
         dispatch(updateProductSuccess(data));
     } catch (error) {
@@ -122,7 +135,9 @@ export const getReviews =  id => async (dispatch) => {
 
     try {  
         dispatch(reviewsRequest()) 
-        const { data }  =  await axios.get(`${baseURL}/api/v1/admin/reviews`,{params: {id}});
+        const { data }  =  await axios.get(`${baseURL}/api/v1/admin/reviews`,{params: {id}}, {
+            withCredentials: true, // 👈 This is the key
+        });
         dispatch(reviewsSuccess(data))
     } catch (error) {
         //handle error
@@ -135,7 +150,9 @@ export const deleteReview =  (productId, id) => async (dispatch) => {
 
     try {  
         dispatch(deleteReviewRequest()) 
-        await axios.delete(`${baseURL}/api/v1/admin/review`,{params: {productId, id}});
+        await axios.delete(`${baseURL}/api/v1/admin/review`,{params: {productId, id}}, {
+            withCredentials: true, // 👈 This is the key
+        });
         dispatch(deleteReviewSuccess())
     } catch (error) {
         //handle error

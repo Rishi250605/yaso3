@@ -174,7 +174,9 @@ export const getUsers =  async (dispatch) => {
 
     try {
         dispatch(usersRequest())
-        const { data }  = await axios.get(`${baseURL}/api/v1/admin/users`);
+        const { data }  = await axios.get(`${baseURL}/api/v1/admin/users`, {
+            withCredentials: true, // 👈 This is the key
+        });
         dispatch(usersSuccess(data))
     } catch (error) {
         dispatch(usersFail(error.response.data.message))
@@ -186,7 +188,9 @@ export const getUser = id => async (dispatch) => {
 
     try {
         dispatch(userRequest())
-        const { data }  = await axios.get(`${baseURL}/api/v1/admin/user/${id}`);
+        const { data }  = await axios.get(`${baseURL}/api/v1/admin/user/${id}`, {
+            withCredentials: true, // 👈 This is the key
+        });
         dispatch(userSuccess(data))
     } catch (error) {
         dispatch(userFail(error.response.data.message))
@@ -198,7 +202,9 @@ export const deleteUser = id => async (dispatch) => {
 
     try {
         dispatch(deleteUserRequest())
-        await axios.delete(`${baseURL}/api/v1/admin/user/${id}`);
+        await axios.delete(`${baseURL}/api/v1/admin/user/${id}`, {
+            withCredentials: true, // 👈 This is the key
+        });
         dispatch(deleteUserSuccess())
     } catch (error) {
         dispatch(deleteUserFail(error.response.data.message))
@@ -215,7 +221,9 @@ export const updateUser = (id, formData) => async (dispatch) => {
                 'Content-type': 'application/json'
             }
         }
-        await axios.put(`${baseURL}/api/v1/admin/user/${id}`, formData, config);
+        await axios.put(`${baseURL}/api/v1/admin/user/${id}`, formData, config, {
+            withCredentials: true, // 👈 This is the key
+        });
         dispatch(updateUserSuccess())
     } catch (error) {
         dispatch(updateUserFail(error.response.data.message))
